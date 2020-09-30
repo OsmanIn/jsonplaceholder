@@ -4,19 +4,35 @@ import { Container, Row, Col } from "react-bootstrap";
 import Users from './Users';
 import Albums from './Albums';
 import Photos from './Photos';
-//import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+ .main{ 
+  padding-top:50px;
+  
+ }
+ .row{
+  width:90%;
+  margin:0 auto; 
+  padding:25px;
+   background-color:white;
+ }
+ .h1{
+  text-align:-webkit-center
+}
+.h2{
+  text-align:-webkit-center
+}`;
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       selectedUserId: false,
       selectedAlbumId: false
     };
-  
-   }
-   // gets the userId from the component User, to which it's passed as props
+  }
   selectUser = userId => {
     this.setState({ selectedUserId: userId, selectedAlbumId: false });
   };
@@ -24,33 +40,23 @@ class App extends Component {
   selectAlbum = albumId => {
     this.setState({ selectedAlbumId: albumId });
   };
-     
-  render(){
-    
+
+  render() {
     return (
-      <Container fluid >
-        <Row >
-    {/* <div className="App"> */}
-       {/* <h1>Hello People </h1> */}
-    <Col xs><Users selectUser={this.selectUser} selectedUserId={this.state.selectedUserId} /></Col>
-    <Col xs><Albums selectedUserId={this.state.selectedUserId} selectAlbum={this.selectAlbum} /></Col>
-    <Col xs><Photos selectedAlbumId={this.state.selectedAlbumId}  /></Col>
-    {/* </div> */}
-  </Row>
-</Container>
-
-
-
-      // <div className="App">
-      //  <h1>Hello People </h1>
-      //  {/* <SearchBar photo={this.photo}/> */}
-      //  <Users selectUser={this.selectUser} selectedUserId={this.state.selectedUserId} />
-      //  <Albums selectedUserId={this.state.selectedUserId} selectAlbum={this.selectAlbum} />
-      //  <Photos selectedAlbumId={this.state.selectedAlbumId}  />
-      // </div>
+      <Styles>
+        <div className="main">
+          <Container fluid>
+            <h1 className="h1" style={{ color: "#cc2b5e" }}>JSONPLACEHOLDER PROJECT</h1>
+            <Row>
+              <Col className="col-3"><Users selectUser={this.selectUser} selectedUserId={this.state.selectedUserId} /></Col>
+              <Col className="col-4"><Albums selectedUserId={this.state.selectedUserId} selectAlbum={this.selectAlbum} /></Col>
+              <Col className="col-5"><Photos selectedAlbumId={this.state.selectedAlbumId} /></Col>
+            </Row>
+          </Container>
+        </div>
+      </Styles>
     )
   }
-  
 }
 
 export default App;
